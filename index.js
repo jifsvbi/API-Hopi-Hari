@@ -5,8 +5,6 @@ const helmet = require("helmet")
 const bodyParser = require("body-parser");
 
 const usuariosRoute = require("./routes/login.route");
-const cadastroRoute = require("./routes/cadastro.route");
-const usuariosAtualizarRoute = require("./routes/usuarioAtualizar.route");
 
 app.use(cors());
 app.use(helmet());
