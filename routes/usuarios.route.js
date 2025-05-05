@@ -4,7 +4,7 @@ const usuariosController = require("../controllers/usuarios.controller")
 
 router.post('/login', ()=>{console.log("Rota de Login")});
 router.put('/:id', usuariosController.atualizarUsuarios);
-router.post('/', ()=>{console.log("Rota de Cadastro")});
+router.post('/', usuariosController.cadastrarUsuario);
 
 module.exports = router;
 
