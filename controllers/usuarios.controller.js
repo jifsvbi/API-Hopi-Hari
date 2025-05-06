@@ -33,7 +33,8 @@ exports.atualizarUsuarios = async (req, res) => {
 
 exports.cadastrarUsuario = async (req, res) => {
     try {
-        const resultado = await mysql.execute(`
+        const hash = await bcrypt.hash(req.body.password, 10);
+        const resultado = await mysql2.execute(`
             INSERT INTO users ( 
             first_name, 
             last_name, 
@@ -43,39 +44,37 @@ exports.cadastrarUsuario = async (req, res) => {
             phone
             )
             VALUES (?, ?, ?, ?, ?, ?);`, [
-                req.body.first_name,
-                req.body.last_name,
-                req.body.email,
-                req.body.password,
-                req.body.birth_date,
-                req.body.phone
-            ]);
+            req.body.first_name,
+            req.body.last_name,
+            req.body.email,
+            hash,
+            req.body.birth_date,
+            req.body.phone
+        ]);
         return res.status(201).send({
             "Mensagem": "Usuario cadastrado com Sucesso",
             "Resultado": resultado
         });
     } catch (error) {
-        return res.status(500).send({"Error": error})
+        return res.status(500).send({ "Error": error })
     }
 }
 
-exports.login = async () => {
+exports.login = async (req, res) => {
     try {
-      const usuarios = await mysql.execute(
-        `SELECT * FROM users WHERE email = ?`,
-        [req.body.email]);
-        console.log(usuario);
+        const usuario = await mysql2.execute(
+            `SELECT * FROM users WHERE email = ?`,
+            [req.body.email]);
 
         if (usuario.length == 0) {
-            return res.status(401).send({"Mensagem": "Usuario não cadastrado"});
+            return res.status(401).send({ "Mensagem": "Usuario não cadastrado" });
         }
-        
-        const match = await bcrypt.compare(usuario[0].password, req.body.password);
+
+        const match = await bcrypt.compare(req.body.password, usuario[0].password);
         if (!match) {
-            return res.status(401).send({"Mensagem": "Senha incorreta!"})
+            return res.status(401).send({ "Mensagem": "Senha incorreta!" })
         }
-        console.log(match, req.body.password, usuario[0].password)
-        
+
         const token = jwt.sign({
             id: usuario[0].id,
             first_name: usuario[0].first_name,
@@ -86,8 +85,10 @@ exports.login = async () => {
         return res.status(200).send({
             "Mensagem": "Usuario autenticado com Sucesso",
             "token": token
-        })
+        });
+
+
     } catch (error) {
-        return res.status(500).send({ "Eror": error }) 
+        return res.status(500).send({ "Error": error })
     }
 }
