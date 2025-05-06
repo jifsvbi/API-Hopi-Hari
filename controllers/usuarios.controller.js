@@ -1,4 +1,6 @@
 const mysql2 = require("../mysql");
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
 exports.atualizarUsuarios = async (req, res) => {
     try {
@@ -54,5 +56,21 @@ exports.cadastrarUsuario = async (req, res) => {
         });
     } catch (error) {
         return res.status(500).send({"Error": error})
+    }
+}
+
+exports.login = async () => {
+    try {
+      const usuarios = await mysql.execute(
+        `SELECT * FROM users WHERE email = ?`,
+        [req.body.email]);
+        console.log(usuario);
+
+        if (usuario.length == 0) {
+            return res.status(401).send({"Mensagem": "Usuario não cadastrado"});
+        }
+
+    } catch (error) {
+        return res.status(500).send({ "Eror": error }) 
     }
 }
