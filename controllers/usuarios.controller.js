@@ -69,7 +69,24 @@ exports.login = async () => {
         if (usuario.length == 0) {
             return res.status(401).send({"Mensagem": "Usuario não cadastrado"});
         }
-
+        
+        const match = await bcrypt.compare(usuario[0].password, req.body.password);
+        if (!match) {
+            return res.status(401).send({"Mensagem": "Senha incorreta!"})
+        }
+        console.log(match, req.body.password, usuario[0].password)
+        
+        const token = jwt.sign({
+            id: usuario[0].id,
+            first_name: usuario[0].first_name,
+            last_name: usuario[0].last_name,
+            email: usuario[0].email,
+            birth_date: usuario[0].birth_date,
+        }, "senhadojwt");
+        return res.status(200).send({
+            "Mensagem": "Usuario autenticado com Sucesso",
+            "token": token
+        })
     } catch (error) {
         return res.status(500).send({ "Eror": error }) 
     }
