@@ -51,6 +51,7 @@ exports.cadastrarUsuario = async (req, res) => {
             req.body.birth_date,
             req.body.phone
         ]);
+        
         return res.status(201).send({
             "Mensagem": "Usuario cadastrado com Sucesso",
             "Resultado": resultado
