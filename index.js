@@ -6,6 +6,10 @@ const bodyParser = require("body-parser");
 
 const usuariosRoute = require("./routes/usuarios.route");
 const filasRoute = require("./routes/filas.route")
+const notificationRoutes = require('./routes/notificação.route');
+
+app.use(express.json());
+app.use('/notificacoes', notificationRoutes);
 
 app.use(cors());
 app.use(helmet());
