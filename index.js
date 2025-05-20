@@ -6,8 +6,15 @@ const bodyParser = require("body-parser");
 
 const usuariosRoute = require("./routes/usuarios.route");
 const filasRoute = require("./routes/filas.route")
+<<<<<<< HEAD
 const notificationRoute = require("./routes/notification.route"); // ✅ Correto
 const brinquedosRoute = require("./routes/brinquedo.route"); 
+=======
+const notificationRoutes = require('./routes/notificação.route');
+
+app.use(express.json());
+app.use('/notificacoes', notificationRoutes);
+>>>>>>> 59a5673e0dcc8c0c9659c048bdb6028f3d1341ac
 
 app.use(cors());
 app.use(helmet());

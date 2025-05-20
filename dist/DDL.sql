@@ -86,14 +86,14 @@ COLLATE = utf8mb4_unicode_ci;
 CREATE TABLE IF NOT EXISTS `hopi_hari_db`.`notifications` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `description` VARCHAR(45) NOT NULL,
-  `id_rides` INT NOT NULL,
+  `id_atracoes` INT NOT NULL,
   `id_users` INT NOT NULL,
   `notificationscol` TINYINT NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_notifications_atracoes1_idx` (`id_rides` ASC) VISIBLE,
+  INDEX `fk_notifications_atracoes1_idx` (`id_atracoes` ASC) VISIBLE,
   INDEX `fk_notifications_users1_idx` (`id_users` ASC) VISIBLE,
   CONSTRAINT `fk_notifications_atracoes1`
-    FOREIGN KEY (`id_rides`)
+    FOREIGN KEY (`id_atracoes`)
     REFERENCES `hopi_hari_db`.`rides` (`id`),
   CONSTRAINT `fk_notifications_users1`
     FOREIGN KEY (`id_users`)
@@ -102,19 +102,26 @@ ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_unicode_ci;
 
-USE `hopi_hari_db`;
 
-DELIMITER $$
-USE `hopi_hari_db`$$
-CREATE
-DEFINER=`root`@`localhost`
-TRIGGER `hopi_hari_db`.`after_insert_line`
-AFTER INSERT ON `hopi_hari_db`.`line`
-FOR EACH ROW
-BEGIN   
-        DECLARE wait_time INT;
-        DECLARE line_count INT;
-        DECLARE total_wait INT;
+-- -----------------------------------------------------
+-- Table `hopi_hari_db`.`line`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `hopi_hari_db`.`line` (
+  `id_users` INT NOT NULL,
+  `id_atracoes` INT NOT NULL,
+  `created_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id_users`, `id_atracoes`),
+  INDEX `fk_users_has_atracoes_atracoes1_idx` (`id_atracoes` ASC) VISIBLE,
+  INDEX `fk_users_has_atracoes_users_idx` (`id_users` ASC) VISIBLE,
+  CONSTRAINT `fk_users_has_atracoes_atracoes1`
+    FOREIGN KEY (`id_atracoes`)
+    REFERENCES `hopi_hari_db`.`rides` (`id`),
+  CONSTRAINT `fk_users_has_atracoes_users`
+    FOREIGN KEY (`id_users`)
+    REFERENCES `hopi_hari_db`.`users` (`id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_unicode_ci;
 
         SELECT tempo_espera INTO wait_time
          FROM rides
