@@ -85,9 +85,17 @@ exports.login = async (req, res) => {
             phone: usuario[0].phone,
             admin: usuario[0].admin
         }, "senhadojwt");
+
         return res.status(200).send({
             "Mensagem": "Usuario autenticado com Sucesso",
-            "token": token
+            "token": token,
+            "user":{
+            "firstname": usuario[0].first_name,
+            "lastname": usuario[0].last_name,
+            "email": usuario[0].email,
+            "birthdate": usuario[0].birth_date,
+            "phone": usuario[0].phone
+            }
         });
 
 
