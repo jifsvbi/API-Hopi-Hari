@@ -1,58 +1,180 @@
-INSERT INTO areas (name) VALUES ("Mistieri");
-INSERT INTO areas (name) VALUES ("Infantasi");
-INSERT INTO areas (name) VALUES ("Aribabiba");
-INSERT INTO areas (name) VALUES ("Wildwest");
-INSERT INTO areas (name) VALUES ("Kaminda Mundi");
+INSERT INTO areas (name) VALUES 
+("Kaminda"),
+("Wild West"),
+("Infantasia"),
+("Aribabiba"),
+("Mistieri");
 
-SELECT * FROM areas;
 
--- ÁREA: Mistiéri
-INSERT INTO rides (nome, tempo_espera, status, id_areas)
-VALUES ("Montezum", 30, "Aberto", (SELECT id FROM area WHERE name = "Mistiéri"));
+-- Cine 180 - Kaminda
+INSERT INTO rides(name, waiting_time, status, id_areas)
+VALUES ("Cine 180", 2, "Aberto", (SELECT id FROM areas WHERE name = "Kaminda"));
 
-INSERT INTO rides (nome, tempo_espera, status, id_areas)
-VALUES ("Vurang", 35, "Aberto", (SELECT id FROM area WHERE name = "Mistiéri"));
+-- Espetáculo de Rua - Kaminda
+INSERT INTO rides(name, waiting_time, status, id_areas)
+VALUES ("Espetáculo de Rua", 0, "Aberto", (SELECT id FROM areas WHERE name = "Kaminda"));
 
-INSERT INTO rides (nome, tempo_espera, status, id_areas)
-VALUES ("Ekatomb", 50, "Manutenção", (SELECT id FROM area WHERE name = "Mistiéri"));
+-- Infocentro - Kaminda
+INSERT INTO rides(name, waiting_time, status, id_areas)
+VALUES ("Infocentro", 0, "Aberto", (SELECT id FROM areas WHERE name = "Kaminda"));
 
-INSERT INTO rides (nome, tempo_espera, status, id_areas)
-VALUES ("Katakumb", 60, "Aberto", (SELECT id FROM area WHERE name = "Mistiéri"));
+-- Ghosti Hotel - Wild West
+INSERT INTO rides(name, waiting_time, status, id_areas)
+VALUES ("Ghosti Hotel", 4, "Aberto",  (SELECT id FROM areas WHERE name = "Wild West"));
 
-INSERT INTO rides (nome, tempo_espera, status, id_areas)
-VALUES ("Simulákron", 20, "Aberto", (SELECT id FROM area WHERE name = "Mistiéri"));
+-- Saloon Show - Wild West
+INSERT INTO rides(name, waiting_time, status, id_areas)
+VALUES ("Saloon Show", 0, "Aberto",  (SELECT id FROM areas WHERE name = "Wild West"));
 
-INSERT INTO rides (nome, tempo_espera, status, id_areas)
-VALUES ("Vulaviking", 25, "Aberto", (SELECT id FROM area WHERE name = "Mistiéri"));
+-- Carrossel di Billie - Infantasia
+INSERT INTO rides(name, waiting_time, status, id_areas)
+VALUES ("Carrossel di Billie", 2, "Aberto", (SELECT id FROM areas WHERE name = "Infantasia"));
 
--- ÁREA: Aribabiba
-INSERT INTO rides (nome, tempo_espera, status, id_areas)
-VALUES ("Katapul", 30, "Aberto", (SELECT id FROM area WHERE name = "Aribabiba"));
+-- Hora do Horror Kids - Infantasia
+INSERT INTO rides(name, waiting_time, status, id_areas)
+VALUES ("Hora do Horror Kids", 1, "Aberto", (SELECT id FROM areas WHERE name = "Infantasia"));
 
-INSERT INTO rides (nome, tempo_espera, status, id_areas)
-VALUES ("Parangolé", 40, "Aberto", (SELECT id FROM area WHERE name = "Aribabiba"));
+-- Super Heroi Show - Aribabiba
+INSERT INTO rides(name, waiting_time, status, id_areas)
+VALUES ("Super Herói Show", 0, "Aberto", (SELECT id FROM areas WHERE name = "Aribabiba"));
 
-INSERT INTO rides (nome, tempo_espera, status, id_areas)
-VALUES ("Jambalaia", 45, "Aberto", (SELECT id FROM area WHERE name = "Aribabiba"));
+-- The Looney Tunes Show - Aribabiba (antigo show temático)
+INSERT INTO rides(name, waiting_time, status, id_areas)
+VALUES ("The Looney Tunes Show", 0, "Fechado", (SELECT id FROM areas WHERE name = "Aribabiba"));
 
-INSERT INTO rides (nome, tempo_espera, status, id_areas)
-VALUES ("Hula Hupi", 45, "Aberto", (SELECT id FROM area WHERE name = "Aribabiba"));
+-- Cine 180 - Kaminda
+INSERT INTO rides(name, waiting_time, status, id_areas)
+VALUES ("Cine 180", 2, "Aberto", (SELECT id FROM areas WHERE name = "Kaminda"));
 
-INSERT INTO rides (nome, tempo_espera, status, id_areas)
-VALUES ("Aribabobbi", 60, "Aberto", (SELECT id FROM area WHERE name = "Aribabiba"));
+-- Espetáculo de Rua - Kaminda
+INSERT INTO rides(name, waiting_time, status, id_areas)
+VALUES ("Espetáculo de Rua", 0, "Aberto", (SELECT id FROM areas WHERE name = "Kaminda"));
 
-INSERT INTO rides (nome, tempo_espera, status, id_areas)
-VALUES ("Speedi '64", 40, "Aberto", (SELECT id FROM area WHERE name = "Aribabiba"));
+-- Infocentro - Kaminda
+INSERT INTO rides(name, waiting_time, status, id_areas)
+VALUES ("Infocentro", 0, "Aberto", (SELECT id FROM areas WHERE name = "Kaminda"));
 
-INSERT INTO rides (nome, tempo_espera, status, id_areas)
-VALUES ("Vambatê", 22, "Manutenção", (SELECT id FROM area WHERE name = "Aribabiba"));
+-- Ghosti Hotel - Wild West
+INSERT INTO rides(name, waiting_time, status, id_areas)
+VALUES ("Ghosti Hotel", 4, "Aberto",  (SELECT id FROM areas WHERE name = "Wild West"));
 
-INSERT INTO rides (nome, tempo_espera, status, id_areas)
-VALUES ("Cinemotion", 28, "Aberto", (SELECT id FROM area WHERE name = "Aribabiba"));
+-- Saloon Show - Wild West
+INSERT INTO rides(name, waiting_time, status, id_areas)
+VALUES ("Saloon Show", 0, "Aberto",  (SELECT id FROM areas WHERE name = "Wild West"));
 
-INSERT INTO rides (nome, tempo_espera, status, id_areas)
-VALUES ("Hadikali", 32, "Aberto", (SELECT id FROM area WHERE name = "Aribabiba"));
+-- Carrossel di Billie - Infantasia
+INSERT INTO rides(name, waiting_time, status, id_areas)
+VALUES ("Carrossel di Billie", 2, "Aberto", (SELECT id FROM areas WHERE name = "Infantasia"));
 
--- ÁREA: Wildwest
-INSERT INTO rides (nome, tempo_espera, status, id_areas)
-VALUES ("Bravo Bull", 15, "Aberto", (SELECT id FROM area WHERE name = "Wildwest"));
+-- Hora do Horror Kids - Infantasia
+INSERT INTO rides(name, waiting_time, status, id_areas)
+VALUES ("Hora do Horror Kids", 1, "Aberto", (SELECT id FROM areas WHERE name = "Infantasia"));
+
+-- Cine 180 - Kaminda
+INSERT INTO rides(name, waiting_time, status, id_areas)
+VALUES ("Cine 180", 2, "Aberto", (SELECT id FROM areas WHERE name = "Kaminda"));
+
+-- Espetáculo de Rua - Kaminda
+INSERT INTO rides(name, waiting_time, status, id_areas)
+VALUES ("Espetáculo de Rua", 0, "Aberto", (SELECT id FROM areas WHERE name = "Kaminda"));
+
+-- Infocentro - Kaminda
+INSERT INTO rides(name, waiting_time, status, id_areas)
+VALUES ("Infocentro", 0, "Aberto", (SELECT id FROM areas WHERE name = "Kaminda"));
+
+-- Ghosti Hotel - Wild West
+INSERT INTO rides(name, waiting_time, status, id_areas)
+VALUES ("Ghosti Hotel", 4, "Aberto", (SELECT id FROM areas WHERE name = "Wild West"));
+
+-- Saloon Show - Wild West
+INSERT INTO rides(name, waiting_time, status, id_areas)
+VALUES ("Saloon Show", 0, "Aberto", (SELECT id FROM areas WHERE name = "Wild West"));
+
+-- Evolution - Mistieri
+INSERT INTO rides(name, waiting_time, status, id_areas)
+VALUES ("Evolution", 6, "Aberto", (SELECT id FROM areas WHERE name = "Mistieri"));
+
+-- Simulákron - Mistieri
+INSERT INTO rides(name, waiting_time, status, id_areas)
+VALUES ("Simulákron", 4, "Aberto", (SELECT id FROM areas WHERE name = "Mistieri"));
+
+-- Theatro di Kaminda - Kaminda
+INSERT INTO rides(name, waiting_time, status, id_areas)
+VALUES ("Theatro di Kaminda", 2, "Aberto", (SELECT id FROM areas WHERE name = "Kaminda"));
+
+-- Eléktron - Kaminda
+INSERT INTO rides(name, waiting_time, status, id_areas)
+VALUES ("Eléktron", 5, "Aberto", (SELECT id FROM areas WHERE name = "Kaminda"));
+
+-- Trukes di Kaminda - Kaminda
+INSERT INTO rides(name, waiting_time, status, id_areas)
+VALUES ("Trukes di Kaminda", 3, "Aberto", (SELECT id FROM areas WHERE name = "Kaminda"));
+
+-- Kastel di Lendas - Infantasia
+INSERT INTO rides(name, waiting_time, status, id_areas)
+VALUES ("Kastel di Lendas", 4, "Aberto", (SELECT id FROM areas WHERE name = "Infantasia"));
+
+-- Minimontanha - Infantasia
+INSERT INTO rides(name, waiting_time, status, id_areas)
+VALUES ("Minimontanha", 2, "Aberto", (SELECT id FROM areas WHERE name = "Infantasia"));
+
+-- Trenzinho - Infantasia
+INSERT INTO rides(name, waiting_time, status, id_areas)
+VALUES ("Trenzinho", 1, "Aberto", (SELECT id FROM areas WHERE name = "Infantasia"));
+
+-- Crazy Wagon - Wild West
+INSERT INTO rides(name, waiting_time, status, id_areas)
+VALUES ("Crazy Wagon", 6, "Aberto", (SELECT id FROM areas WHERE name = "Wild West"));
+
+-- Old West - Wild West
+INSERT INTO rides(name, waiting_time, status, id_areas)
+VALUES ("Old West", 2, "Aberto", (SELECT id FROM areas WHERE name = "Wild West"));
+
+-- Vambatê - Aribabiba
+INSERT INTO rides(name, waiting_time, status, id_areas)
+VALUES ("Vambatê", 3, "Aberto", (SELECT id FROM areas WHERE name = "Aribabiba"));
+
+-- Toka di Urso - Aribabiba
+INSERT INTO rides(name, waiting_time, status, id_areas)
+VALUES ("Toka di Urso", 2, "Aberto", (SELECT id FROM areas WHERE name = "Aribabiba"));
+ use hopi_hari_db;
+
+-- Montezum - Mistieri
+INSERT INTO rides(name, waiting_time, status, id_areas)
+VALUES ("Montezum", 5, "Aberto", (SELECT id FROM areas WHERE name = "Mistieri"));
+
+-- Ekatomb - Mistieri
+INSERT INTO rides(name, waiting_time, status, id_areas)
+VALUES ("Ekatomb", 10, "Aberto", (SELECT id FROM areas WHERE name = "Mistieri"));
+
+-- Katakumb - Mistieri
+INSERT INTO rides(name, waiting_time, status, id_areas)
+VALUES ("Katakumb", 7, "Aberto", (SELECT id FROM areas WHERE name = "Mistieri"));
+
+-- Rio Bravo - Wild West
+INSERT INTO rides(name, waiting_time, status, id_areas)
+VALUES ("Rio Bravo", 15, "Aberto", (SELECT id FROM areas WHERE name = "Wild West"));
+
+-- West River Hotel - Wild West
+INSERT INTO rides(name, waiting_time, status, id_areas)
+VALUES ("West River Hotel", 3, "Aberto", (SELECT id FROM areas WHERE name = "Wild West"));
+
+-- La Tour Eiffel - Aribabiba
+INSERT INTO rides(name, waiting_time, status, id_areas)
+VALUES ("La Tour Eiffel", 12, "Aberto", (SELECT id FROM areas WHERE name = "Aribabiba"));
+
+-- Vurang - Mistieri
+INSERT INTO rides(name, waiting_time, status, id_areas)
+VALUES ("Vurang", 8, "Aberto", (SELECT id FROM areas WHERE name = "Mistieri"));
+
+-- Giranda Mundi - Kaminda (corrigido)
+INSERT INTO rides(name, waiting_time, status, id_areas)
+VALUES ("Giranda Mundi", 5, "Aberto", (SELECT id FROM areas WHERE name = "Kaminda"));
+
+-- Speedi Kid - Infantasia
+INSERT INTO rides(name, waiting_time, status, id_areas)
+VALUES ("Speedi Kid", 2, "Aberto", (SELECT id FROM areas WHERE name = "Infantasia"));
+
+-- Doremí - Infantasia
+INSERT INTO rides(name, waiting_time, status, id_areas)
+VALUES ("Doremí", 3, "Aberto", (SELECT id FROM areas WHERE name = "Infantasia"));
