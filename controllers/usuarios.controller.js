@@ -5,18 +5,21 @@ const jwt = require("jsonwebtoken");
 exports.atualizarUsuarios = async (req, res) => {
     try {
         const idUsuarios = Number(req.params.id);
-
         const resultado = await mysql2.execute(
-            `UPDATE users
-                SET name     = ?,
-                    email    = ?,
-                    password = ?
-            WHERE id = ?;`,
-            [ // ← Este colchete estava faltando na sua versão original
-                req.body.name,
+            `UPDATE users 
+               SET first_name = ?,
+                   last_name  = ?,
+                   phone      = ?,
+                   birth_date = ?,
+                   email      = ?
+              WHERE id        = ?`,
+            [ 
+                req.body.first_name,
+                req.body.last_name,
+                req.body.phone,
+                req.body.birth_date,
                 req.body.email,
-                req.body.password, // ← Corrigido "pasword" para "password"
-                idUsuarios
+                req.body.idUsuarios
             ]
         );
 
